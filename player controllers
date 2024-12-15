@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+
+    void Update()
+    {
+        // Player movement
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+        transform.Translate(new Vector3(moveX, moveY, 0) * moveSpeed * Time.deltaTime);
+
+        // Shooting
+        if (Input.GetButtonDown("Fire1")) // Left mouse button or Ctrl
+        {
+            Shoot();
+        }
+    }
+
+    void Shoot()
+    {
+        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    }
+}
