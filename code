@@ -1,0 +1,27 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance;
+    public Text scoreText;
+    public GameObject gameOverPanel;
+    private int score = 0;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+    public void AddScore(int points)
+    {
+        score += points;
+        scoreText.text = "Score: " + score;
+    }
+
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0; // Pause the game
+    }
+}
